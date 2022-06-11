@@ -1,7 +1,10 @@
 import gamesradarLastArticlesTitlesModule from "./modules/gamesradar/index";
 
-const gamesradarArticles = await gamesradarLastArticlesTitlesModule.getLastArticlesHeadlines();
+//  bot.sendMessage(chatId, "<b>TEST</b>", {parse_mode: "HTML"});
 
-const fullArticle = await gamesradarLastArticlesTitlesModule.getArticle(gamesradarArticles[1].link);
+const gamesradarArticles = await gamesradarLastArticlesTitlesModule.getLastArticlesHeadlines(); //{page:2}
+// console.log(gamesradarArticles);
 
-// console.log(fullArticle);
+const fullArticle = await gamesradarLastArticlesTitlesModule.getArticle(gamesradarArticles[0].link);
+
+console.log(fullArticle);

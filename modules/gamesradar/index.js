@@ -1,8 +1,9 @@
 import axios from "axios";
 import jsdom from "jsdom";
 
-const getLastArticlesHeadlines = async () => {
-  const link = "https://www.gamesradar.com/uk/play/";
+const getLastArticlesHeadlines = async (options) => {
+  let link = "https://www.gamesradar.com/uk/play/";
+  if (options && options.page && options.page > 1) link += `page/${options.page}/`;
   const {data} = await axios.get(link);
   const dom = new jsdom.JSDOM(data);
   const articlesHTMLs = dom.window.document.getElementsByClassName("article-link");
@@ -45,10 +46,9 @@ const getArticle = async (link) => {
   }
   const paragraph = articleHTML.innerHTML;
 
-  console.log(paragraph);
-  console.log(images);
+  // console.log(paragraph);
+  // console.log(images);
   return {paragraph, images};
-  //  bot.sendMessage(chatId, "<b>TEST</b>", {parse_mode: "HTML"});
 };
 
 export default {getLastArticlesHeadlines, getArticle};
